@@ -1,11 +1,12 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { ExistingUserDTO } from './../user/dtos/existing-user.dto';
+import { UserDetails } from './../user/user-details.interface';
+import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
+
 import * as bcrypt from 'bcrypt';
 import { NewUserDTO } from 'src/user/dtos/new-user.dto';
-import { ExistingUserDTO } from 'src/user/dtos/existing-user.dto';
-import { UserDetails } from 'src/user/user-details.interface';
-import { UserService } from '.././user/user.service';
+
+import { UserService } from './../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { HttpStatus } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
@@ -23,19 +24,19 @@ export class AuthService {
 
     const existingUser = await this.userService.findByEmail(email);
 
-    if (existingUser) return 'Email has been taken!';
+    if (existingUser)
+      throw new HttpException(
+        'An account with that email already exists!',
+        HttpStatus.CONFLICT,
+      );
 
     const hashedPassword = await this.hashPassword(password);
 
-    const newUser = await this.userService.createUser(
-      name,
-      email,
-      hashedPassword,
-    );
+    const newUser = await this.userService.create(name, email, hashedPassword);
     return this.userService._getUserDetails(newUser);
   }
 
-  async doesPassWordMatch(
+  async doesPasswordMatch(
     password: string,
     hashedPassword: string,
   ): Promise<boolean> {
@@ -50,12 +51,13 @@ export class AuthService {
     const doesUserExist = !!user;
 
     if (!doesUserExist) return null;
-    const doesPassWordMatch = await this.doesPassWordMatch(
+
+    const doesPasswordMatch = await this.doesPasswordMatch(
       password,
       user.password,
     );
 
-    if (!doesPassWordMatch) return null;
+    if (!doesPasswordMatch) return null;
 
     return this.userService._getUserDetails(user);
   }

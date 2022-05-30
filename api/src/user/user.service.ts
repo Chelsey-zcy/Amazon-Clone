@@ -28,7 +28,7 @@ export class UserService {
     return this._getUserDetails(user);
   }
 
-  async createUser(
+  async create(
     name: string,
     email: string,
     hashedPassword: string,

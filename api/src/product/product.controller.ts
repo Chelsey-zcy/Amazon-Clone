@@ -41,7 +41,7 @@ export class ProductController {
     @Param('id') id: string,
     @Body('name') name: string,
     @Body('price') price: number,
-    @Body('description') description: string,
+    @Body('description') description?: string,
   ): Promise<ProductDocument> {
     return this.productService.update(id, name, price, description);
   }
