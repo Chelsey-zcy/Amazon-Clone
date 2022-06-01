@@ -205,7 +205,7 @@ const RegistrationFormComponent: FC = () => {
             size='small'
           />
           <Button
-            variant='contained'
+            id="register-button"
             style={{
               marginTop: '16px',
               height: '31px',
