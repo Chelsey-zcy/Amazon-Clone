@@ -75,7 +75,7 @@ const SigninFormComponent: FC = () => {
   };
 
   if (isLoading)
-    return <CircularProgress sx={{ marginTop: '64px' }} color='primary' />;
+    return <CircularProgress sx={{ marginTop: '64px' }} color="primary" />;
 
   return (
     <>
@@ -89,14 +89,14 @@ const SigninFormComponent: FC = () => {
         }}
       >
         <form onSubmit={onSubmitHandler}>
-          <Grid container direction='column' justifyContent='flex-start'>
-            <Typography variant='h4' component='h1'>
+          <Grid container direction="column" justifyContent="flex-start">
+            <Typography variant="h4" component="h1">
               Sign-In
             </Typography>
 
             <InputLabel
               sx={{ fontWeight: 500, marginTop: 1, color: '#000000' }}
-              htmlFor='email'
+              htmlFor="email"
             >
               Email
             </InputLabel>
@@ -106,16 +106,16 @@ const SigninFormComponent: FC = () => {
               onBlur={emailBlurHandler}
               error={emailHasError}
               helperText={emailHasError ? 'Enter your email' : ''}
-              type='email'
-              name='email'
-              id='email'
-              variant='outlined'
-              size='small'
+              type="email"
+              name="email"
+              id="email"
+              variant="outlined"
+              size="small"
             />
 
             <InputLabel
               sx={{ fontWeight: 500, marginTop: 1, color: '#000000' }}
-              htmlFor='password'
+              htmlFor="password"
             >
               Password
             </InputLabel>
@@ -127,12 +127,12 @@ const SigninFormComponent: FC = () => {
               helperText={
                 passwordHasError ? 'Minimum 6 characters required' : ''
               }
-              type='password'
-              name='password'
-              id='password'
-              variant='outlined'
-              size='small'
-              placeholder='Minimum 6 characters required'
+              type="password"
+              name="password"
+              id="password"
+              variant="outlined"
+              size="small"
+              placeholder="Minimum 6 characters required"
             />
 
             <Button
@@ -140,7 +140,7 @@ const SigninFormComponent: FC = () => {
               disabled={
                 !validatePasswordLength(password) || !validateEmail(email)
               }
-              variant='contained'
+              variant="contained"
               style={{
                 marginTop: '16px',
                 height: '31px',
@@ -149,7 +149,7 @@ const SigninFormComponent: FC = () => {
                 borderColor: '#a88734 #9c7e31 #846a29',
                 textTransform: 'none',
               }}
-              type='submit'
+              type="submit"
             >
               Sign-In
             </Button>
@@ -164,12 +164,12 @@ const SigninFormComponent: FC = () => {
 
         <div>
           <small>
-            <a href='#' style={{ textDecoration: 'none' }}>
+            <a href="#" style={{ textDecoration: 'none' }}>
               {' '}
               Conditions of use
             </a>{' '}
             and{' '}
-            <a href='#' style={{ textDecoration: 'none' }}>
+            <a href="#" style={{ textDecoration: 'none' }}>
               Privacy policy
             </a>
           </small>
@@ -182,10 +182,11 @@ const SigninFormComponent: FC = () => {
 
         <Link
           id="register-link"
+          to="/register"
           style={{ textDecoration: 'none', color: '#0000ee' }}
         >
           <Button
-            variant='contained'
+            variant="contained"
             style={{
               width: '100%',
               marginTop: '12px',
