@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/amazon'),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     ProductModule,
     UserModule,
     AuthModule,
