@@ -15,8 +15,6 @@
 
 ---
 
-### ✨ [Demo](www.vfgbgtb)
-
 ## Install
 
 ```sh
